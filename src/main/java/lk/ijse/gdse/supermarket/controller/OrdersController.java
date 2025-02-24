@@ -21,14 +21,11 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import lk.ijse.gdse.supermarket.bo.BOFactory;
 import lk.ijse.gdse.supermarket.bo.Custom.CustomerBO;
-import lk.ijse.gdse.supermarket.dao.Custom.CustomerDao;
-import lk.ijse.gdse.supermarket.dao.DAOFactory;
 import lk.ijse.gdse.supermarket.dto.CustomerDTO;
 import lk.ijse.gdse.supermarket.dto.ItemDTO;
 import lk.ijse.gdse.supermarket.dto.OrderDTO;
 import lk.ijse.gdse.supermarket.dto.OrderDetailsDTO;
 import lk.ijse.gdse.supermarket.dto.tm.CartTM;
-import lk.ijse.gdse.supermarket.model.CustomerModel;
 import lk.ijse.gdse.supermarket.model.ItemModel;
 import lk.ijse.gdse.supermarket.model.OrderModel;
 

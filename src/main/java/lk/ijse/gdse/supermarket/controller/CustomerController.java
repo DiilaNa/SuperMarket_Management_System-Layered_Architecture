@@ -31,7 +31,6 @@ import lk.ijse.gdse.supermarket.bo.Custom.CustomerBO;
 import lk.ijse.gdse.supermarket.db.DBConnection;
 import lk.ijse.gdse.supermarket.dto.CustomerDTO;
 import lk.ijse.gdse.supermarket.dto.tm.CustomerTM;
-import lk.ijse.gdse.supermarket.model.CustomerModel;
 
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.view.JasperViewer;
