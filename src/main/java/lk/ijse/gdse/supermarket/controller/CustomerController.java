@@ -26,6 +26,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import lk.ijse.gdse.supermarket.bo.BOFactory;
+import lk.ijse.gdse.supermarket.bo.Custom.CustomerBO;
 import lk.ijse.gdse.supermarket.db.DBConnection;
 import lk.ijse.gdse.supermarket.dto.CustomerDTO;
 import lk.ijse.gdse.supermarket.dto.tm.CustomerTM;
@@ -98,6 +100,7 @@ public class CustomerController implements Initializable {
     private Button btnUpdate;
 
     CustomerModel customerModel = new CustomerModel();
+    CustomerBO customerBO = (CustomerBO) BOFactory.getInstance().getBO(BOFactory.BOType.CUSTOMER);
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -120,7 +123,7 @@ public class CustomerController implements Initializable {
     private void refreshPage() throws SQLException {
         refreshTable();
 
-        String nextCustomerID = customerModel.getNextCustomerId();
+        String nextCustomerID = customerBO.getNextCustomerId();
         lblCustomerId.setText(nextCustomerID);
 
         txtName.setText("");

@@ -17,7 +17,7 @@ public class DAOFactory {
     public enum DAOType {
         CUSTOMER,
     }
-    public SuperDao getSuperDao(DAOType type) {
+    public SuperDao getDao(DAOType type) {
         switch (type) {
             case CUSTOMER:
                 return new CustomerDaoImpl();

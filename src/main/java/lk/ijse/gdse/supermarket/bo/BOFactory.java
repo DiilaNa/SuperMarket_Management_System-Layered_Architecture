@@ -1,6 +1,5 @@
 package lk.ijse.gdse.supermarket.bo;
 
-import lk.ijse.gdse.supermarket.bo.Custom.CustomerBO;
 import lk.ijse.gdse.supermarket.bo.Custom.impl.CustomerBOImpl;
 
 public class BOFactory {
@@ -15,7 +14,7 @@ public class BOFactory {
     public enum BOType {
         CUSTOMER
     }
-    public SuperBO getSuperBO(BOType type) {
+    public SuperBO getBO(BOType type) {
         switch (type) {
             case CUSTOMER:
                 return new CustomerBOImpl();
