@@ -241,7 +241,7 @@ public class CustomerController implements Initializable {
         Optional<ButtonType> buttonType = alert.showAndWait();
         if (buttonType.get() == ButtonType.YES) {
 
-            boolean isDeleted = customerModel.deleteCustomer(customerId);
+            boolean isDeleted = customerBO.deleteCustomer(customerId);
 
             if (isDeleted) {
                 new Alert(Alert.AlertType.INFORMATION, "Customer deleted...!").show();

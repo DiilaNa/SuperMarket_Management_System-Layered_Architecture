@@ -57,7 +57,7 @@ public class CustomerBOImpl implements CustomerBO {
 
     @Override
     public boolean deleteCustomer(String id) throws SQLException {
-        return false;
+       return customerDao.delete(id);
     }
 
 }

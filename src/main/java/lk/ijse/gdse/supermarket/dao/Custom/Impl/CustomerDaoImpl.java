@@ -52,8 +52,8 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
     @Override
-    public boolean delete(Customer entity) {
-        return false;
+    public boolean delete(String Id) throws SQLException {
+        return Util.execute("delete from customer where customer_id=?", Id);
     }
 
     @Override

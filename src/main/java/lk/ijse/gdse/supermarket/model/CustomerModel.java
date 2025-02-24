@@ -19,23 +19,6 @@ import java.util.ArrayList;
  **/
 
 public class CustomerModel {
-    /**
-     * @param customerDTO: The CustomerDTO object containing updated customer data.
-     * @return boolean: Returns true if the customer details are successfully updated, otherwise false.
-     * @throws SQLException: If any SQL-related error occurs during the query execution.
-     * @updateCustomer: Updates customer details in the database.
-     * This method executes an SQL UPDATE query to modify an existing customer's information.
-     **/
-    public boolean updateCustomer(CustomerDTO customerDTO) throws SQLException {
-        return Util.execute(
-                "update customer set name=?, nic=?, email=?, phone=? where customer_id=?",
-                customerDTO.getName(),
-                customerDTO.getNic(),
-                customerDTO.getEmail(),
-                customerDTO.getPhone(),
-                customerDTO.getId()
-        );
-    }
 
     /**
      * @param customerId: The ID of the customer to be deleted.
