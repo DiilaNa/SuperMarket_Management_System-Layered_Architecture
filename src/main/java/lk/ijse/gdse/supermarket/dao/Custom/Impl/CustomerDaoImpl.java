@@ -28,17 +28,24 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
     @Override
-    public boolean save(Customer dto) {
-        return false;
+    public boolean save(Customer entity) throws SQLException {
+        return Util.execute(
+                "insert into customer values (?,?,?,?,?)",
+                entity.getId(),
+                entity.getName(),
+                entity.getNic(),
+                entity.getEmail(),
+                entity.getPhone()
+        );
     }
 
     @Override
-    public void update(Customer dto) {
+    public void update(Customer entity) {
 
     }
 
     @Override
-    public void delete(Customer dto) {
+    public void delete(Customer entity) {
 
     }
 

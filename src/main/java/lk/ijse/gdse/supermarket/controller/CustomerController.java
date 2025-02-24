@@ -222,7 +222,7 @@ public class CustomerController implements Initializable {
         if (isValidName && isValidNic && isValidEmail && isValidPhone) {
             CustomerDTO customerDTO = new CustomerDTO(id, name, nic, email, phone);
 
-            boolean isSaved = customerModel.saveCustomer(customerDTO);
+            boolean isSaved = customerBO.saveCustomer(customerDTO);
 
             if (isSaved) {
                 new Alert(Alert.AlertType.INFORMATION, "Customer saved...!").show();

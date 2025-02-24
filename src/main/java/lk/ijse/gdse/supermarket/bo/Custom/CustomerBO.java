@@ -9,4 +9,5 @@ import java.util.ArrayList;
 public interface CustomerBO extends SuperBO {
     String getNextCustomerId() throws SQLException;
     ArrayList<CustomerDTO> getAllCustomers() throws SQLException;
+    boolean saveCustomer(CustomerDTO customerDTO) throws SQLException;
 }

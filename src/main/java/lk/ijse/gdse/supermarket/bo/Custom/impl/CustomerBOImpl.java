@@ -33,4 +33,15 @@ public class CustomerBOImpl implements CustomerBO {
         return customerDTOS;
     }
 
+    @Override
+    public boolean saveCustomer(CustomerDTO customerDTO) throws SQLException {
+       return customerDao.save(new Customer(
+          customerDTO.getId(),
+          customerDTO.getName(),
+          customerDTO.getNic(),
+          customerDTO.getEmail(),
+          customerDTO.getPhone()
+        ));
+    }
+
 }
