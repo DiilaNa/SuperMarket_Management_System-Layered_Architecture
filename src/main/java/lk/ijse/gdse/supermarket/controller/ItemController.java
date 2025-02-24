@@ -123,7 +123,7 @@ public class ItemController implements Initializable {
     private void resetStyles() {
         txtName.setStyle(txtName.getStyle() + "; -fx-border-color: #7367F0;");
         txtQuantity.setStyle(txtQuantity.getStyle() + "; -fx-border-color: #7367F0;");
-        txtPrice.setStyle(txtPrice.getStyle() + "; -fx-border-color: #7367F0;");
+       txtPrice.setStyle(txtPrice.getStyle() + "; -fx-border-color: #7367F0;");
     }
 
     @FXML
@@ -210,11 +210,11 @@ public class ItemController implements Initializable {
         String priceString = txtPrice.getText();
 
         String quantityPattern = "^[0-9]+$";
-        String pricePattern = "^(\\d+)||((\\d+\\.)(\\d){2})$";
+      //  String pricePattern = "^(\\d+)||((\\d+\\.)(\\d){2})$";
 
         boolean isValidName = name != null;
         boolean isValidQuantity = quantityString.matches(quantityPattern);
-        boolean isValidPrice = priceString.matches(pricePattern);
+       // boolean isValidPrice = priceString.matches(pricePattern);
 
         resetStyles();
 
@@ -226,26 +226,26 @@ public class ItemController implements Initializable {
             txtQuantity.setStyle(txtQuantity.getStyle() + "; -fx-border-color: red;");
         }
 
-        if (!isValidPrice) {
-            txtPrice.setStyle(txtPrice.getStyle() + "; -fx-border-color: red;");
-        }
+//        if (!isValidPrice) {
+//            txtPrice.setStyle(txtPrice.getStyle() + "; -fx-border-color: red;");
+//        }
 
-        if (isValidName && isValidQuantity && isValidPrice) {
+        if (isValidName && isValidQuantity/* && isValidPrice*/) {
             resetStyles();
 
             int quantity = Integer.parseInt(quantityString);
             double price = Double.parseDouble(priceString);
 
-//            ItemDTO updatedItemDTO = new ItemDTO(itemId, name, quantity, price);
-//
-//            boolean isSaved = itemModel.updateItem(updatedItemDTO);
-//
-//            if (isSaved) {
-//                new Alert(Alert.AlertType.INFORMATION, "Item updated successfully!").show();
-//                refreshPage();
-//            } else {
-//                new Alert(Alert.AlertType.ERROR, "Fail to update item!").show();
-//            }
+            ItemDTO updatedItemDTO = new ItemDTO(itemId, name, quantity, price);
+
+            boolean isSaved = itemBO.updateItem(updatedItemDTO);
+
+            if (isSaved) {
+                new Alert(Alert.AlertType.INFORMATION, "Item updated successfully!").show();
+                refreshPage();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Fail to update item!").show();
+            }
         }
     }
 

@@ -25,7 +25,12 @@ public class ItemBOImpl implements ItemBO {
 
     @Override
     public boolean updateItem(ItemDTO itemDTO) throws SQLException {
-        return false;
+        return itemDAO.update(new Item(
+                itemDTO.getItemId(),
+                itemDTO.getItemName(),
+                itemDTO.getQuantity(),
+                itemDTO.getPrice()
+        ));
     }
 
     @Override
