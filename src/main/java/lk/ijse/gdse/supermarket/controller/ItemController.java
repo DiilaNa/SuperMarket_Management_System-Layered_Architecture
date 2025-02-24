@@ -11,6 +11,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import lk.ijse.gdse.supermarket.bo.BOFactory;
+import lk.ijse.gdse.supermarket.bo.Custom.ItemBO;
+import lk.ijse.gdse.supermarket.dao.Custom.ItemDAO;
+import lk.ijse.gdse.supermarket.dto.ItemDTO;
 import lk.ijse.gdse.supermarket.dto.tm.ItemTM;
 
 import java.net.URL;
@@ -61,6 +65,7 @@ public class ItemController implements Initializable {
     private TextField txtQuantity;
 
 //    private final ItemModel itemModel = new ItemModel();
+    ItemBO itemBO = (ItemBO) BOFactory.getInstance().getBO(BOFactory.BOType.ITEM);
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -77,21 +82,21 @@ public class ItemController implements Initializable {
     }
 
     private void loadTableData() throws SQLException {
-//        ArrayList<ItemDTO> itemDTOS = itemModel.getAllItems();
-//        ObservableList<ItemTM> itemTMS = FXCollections.observableArrayList();
-//
-//        for (ItemDTO itemDTO : itemDTOS) {
-//            ItemTM itemTM = new ItemTM(
-//                    itemDTO.getItemId(),
-//                    itemDTO.getName(),
-//                    itemDTO.getQuantity(),
-//                    itemDTO.getPrice()
-//            );
-//
-//            itemTMS.add(itemTM);
-//        }
-//
-//        tblItem.setItems(itemTMS);
+        ArrayList<ItemDTO> itemDTOS = itemBO.getAllItemList();
+        ObservableList<ItemTM> itemTMS = FXCollections.observableArrayList();
+
+        for (ItemDTO itemDTO : itemDTOS) {
+            ItemTM itemTM = new ItemTM(
+                    itemDTO.getItemId(),
+                    itemDTO.getItemName(),
+                    itemDTO.getQuantity(),
+                    itemDTO.getPrice()
+            );
+
+            itemTMS.add(itemTM);
+        }
+
+        tblItem.setItems(itemTMS);
     }
 
     private void loadNextItemId() throws SQLException {

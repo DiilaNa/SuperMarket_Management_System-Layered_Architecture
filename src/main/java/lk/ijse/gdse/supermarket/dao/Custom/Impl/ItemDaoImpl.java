@@ -12,7 +12,17 @@ import java.util.ArrayList;
 public class ItemDaoImpl implements ItemDAO {
     @Override
     public ArrayList<Item> getALL() throws SQLException {
-        return null;
+       ResultSet rst = Util.execute("select * from item");
+       ArrayList<Item> items = new ArrayList<>();
+       while (rst.next()) {
+           items.add(new Item(
+                   rst.getString(1),
+                   rst.getString(2),
+                   rst.getInt(3),
+                   rst.getDouble(4)
+           ));
+       }
+       return items;
     }
 
     @Override
