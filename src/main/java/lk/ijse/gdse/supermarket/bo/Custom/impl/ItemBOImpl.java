@@ -14,17 +14,22 @@ public class ItemBOImpl implements ItemBO {
     ItemDAO itemDAO = (ItemDAO) DAOFactory.getInstance().getDao(DAOFactory.DAOType.ITEM);
 
     @Override
-    public boolean saveItem(ItemDTO item) throws SQLException {
+    public boolean saveItem(ItemDTO itemDTO) throws SQLException {
+        return itemDAO.save(new Item(
+                itemDTO.getItemId(),
+                itemDTO.getItemName(),
+                itemDTO.getQuantity(),
+                itemDTO.getPrice()
+        ));
+    }
+
+    @Override
+    public boolean updateItem(ItemDTO itemDTO) throws SQLException {
         return false;
     }
 
     @Override
-    public boolean updateItem(ItemDTO item) throws SQLException {
-        return false;
-    }
-
-    @Override
-    public boolean deleteItem(ItemDTO item) throws SQLException {
+    public boolean deleteItem(ItemDTO itemDTO) throws SQLException {
         return false;
     }
 

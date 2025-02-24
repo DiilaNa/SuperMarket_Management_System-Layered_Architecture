@@ -26,8 +26,13 @@ public class ItemDaoImpl implements ItemDAO {
     }
 
     @Override
-    public boolean save(Item dto) throws SQLException {
-        return false;
+    public boolean save(Item entity) throws SQLException {
+       return Util.execute("insert into item values(?,?,?,?)",
+               entity.getItemId(),
+               entity.getItemName(),
+               entity.getQuantity(),
+               entity.getPrice()
+               );
     }
 
     @Override

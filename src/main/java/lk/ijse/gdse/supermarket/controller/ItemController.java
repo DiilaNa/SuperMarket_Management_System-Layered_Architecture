@@ -162,16 +162,16 @@ public class ItemController implements Initializable {
             int quantity = Integer.parseInt(quantityString);
             double price = Double.parseDouble(priceString);
 
-//            ItemDTO itemDTO = new ItemDTO(itemId, name, quantity, price);
-//
-//            boolean isSaved = itemModel.saveItem(itemDTO);
-//
-//            if (isSaved) {
-//                new Alert(Alert.AlertType.INFORMATION, "Item saved successfully!").show();
-//                refreshPage();
-//            } else {
-//                new Alert(Alert.AlertType.ERROR, "Fail to save item!").show();
-//            }
+            ItemDTO itemDTO = new ItemDTO(itemId, name, quantity, price);
+
+            boolean isSaved = itemBO.saveItem(itemDTO);
+
+            if (isSaved) {
+                new Alert(Alert.AlertType.INFORMATION, "Item saved successfully!").show();
+                refreshPage();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Fail to save item!").show();
+            }
         }
     }
 
