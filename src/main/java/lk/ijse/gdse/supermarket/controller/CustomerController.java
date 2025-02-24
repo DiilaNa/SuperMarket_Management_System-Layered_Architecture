@@ -99,7 +99,6 @@ public class CustomerController implements Initializable {
     @FXML
     private Button btnUpdate;
 
-    CustomerModel customerModel = new CustomerModel();
     CustomerBO customerBO = (CustomerBO) BOFactory.getInstance().getBO(BOFactory.BOType.CUSTOMER);
 
     @Override

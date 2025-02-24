@@ -77,7 +77,6 @@ public class OrdersController implements Initializable {
 
     // Models to manage data interactions with database or logic layers
     private final OrderModel orderModel = new OrderModel();
-    private final CustomerModel customerModel = new CustomerModel();
     private final ItemModel itemModel = new ItemModel();
     CustomerBO customerBO = (CustomerBO) BOFactory.getInstance().getBO(BOFactory.BOType.CUSTOMER);
 
