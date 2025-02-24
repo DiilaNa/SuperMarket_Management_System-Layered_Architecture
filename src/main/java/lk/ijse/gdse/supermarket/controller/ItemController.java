@@ -185,14 +185,14 @@ public class ItemController implements Initializable {
             Optional<ButtonType> result = alert.showAndWait();
 
             if (result.isPresent() && result.get() == ButtonType.YES) {
-//                boolean isDeleted = itemModel.deleteItem(itemId);
-//
-//                if (isDeleted) {
-//                    new Alert(Alert.AlertType.INFORMATION, "Item deleted successfully!").show();
-//                    refreshPage();
-//                } else {
-//                    new Alert(Alert.AlertType.ERROR, "Failed to delete item!").show();
-//                }
+                boolean isDeleted = itemBO.deleteItem(itemId);
+
+                if (isDeleted) {
+                    new Alert(Alert.AlertType.INFORMATION, "Item deleted successfully!").show();
+                    refreshPage();
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Failed to delete item!").show();
+                }
             }
         }
     }

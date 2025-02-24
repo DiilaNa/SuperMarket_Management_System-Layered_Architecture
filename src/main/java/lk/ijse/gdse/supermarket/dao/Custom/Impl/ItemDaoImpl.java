@@ -47,7 +47,7 @@ public class ItemDaoImpl implements ItemDAO {
 
     @Override
     public boolean delete(String id) throws SQLException {
-        return false;
+        return Util.execute("delete from item where item_id=?",id);
     }
 
     @Override
