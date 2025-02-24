@@ -1,11 +1,8 @@
 package lk.ijse.gdse.supermarket.model;
 
-import lk.ijse.gdse.supermarket.db.DBConnection;
 import lk.ijse.gdse.supermarket.dto.CustomerDTO;
-import lk.ijse.gdse.supermarket.util.CrudUtil;
+import lk.ijse.gdse.supermarket.dao.Util;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -30,7 +27,7 @@ public class CustomerModel {
      * This method retrieves the last customer ID from the database, increments it, and returns the next available customer ID in the format "C001", "C002", etc.
      **/
     public String getNextCustomerId() throws SQLException {
-        ResultSet rst = CrudUtil.execute("select customer_id from customer order by customer_id desc limit 1");
+        ResultSet rst = Util.execute("select customer_id from customer order by customer_id desc limit 1");
 
         if (rst.next()) {
             String lastId = rst.getString(1); // Last customer ID
@@ -50,7 +47,7 @@ public class CustomerModel {
      * This method executes an SQL INSERT query to save customer details into the 'customer' table.
      **/
     public boolean saveCustomer(CustomerDTO customerDTO) throws SQLException {
-        return CrudUtil.execute(
+        return Util.execute(
                 "insert into customer values (?,?,?,?,?)",
                 customerDTO.getId(),
                 customerDTO.getName(),
@@ -67,7 +64,7 @@ public class CustomerModel {
      * This method executes an SQL SELECT query to fetch all customer records and returns them as a list of CustomerDTO objects.
      **/
     public ArrayList<CustomerDTO> getAllCustomers() throws SQLException {
-        ResultSet rst = CrudUtil.execute("select * from customer");
+        ResultSet rst = Util.execute("select * from customer");
 
         ArrayList<CustomerDTO> customerDTOS = new ArrayList<>();
 
@@ -92,7 +89,7 @@ public class CustomerModel {
      * This method executes an SQL UPDATE query to modify an existing customer's information.
      **/
     public boolean updateCustomer(CustomerDTO customerDTO) throws SQLException {
-        return CrudUtil.execute(
+        return Util.execute(
                 "update customer set name=?, nic=?, email=?, phone=? where customer_id=?",
                 customerDTO.getName(),
                 customerDTO.getNic(),
@@ -110,7 +107,7 @@ public class CustomerModel {
      * This method executes an SQL DELETE query to remove a customer by their ID.
      **/
     public boolean deleteCustomer(String customerId) throws SQLException {
-        return CrudUtil.execute("delete from customer where customer_id=?", customerId);
+        return Util.execute("delete from customer where customer_id=?", customerId);
     }
 
     /**
@@ -120,7 +117,7 @@ public class CustomerModel {
      * This method executes an SQL SELECT query to fetch all customer IDs and returns them as a list.
      **/
     public ArrayList<String> getAllCustomerIds() throws SQLException {
-        ResultSet rst = CrudUtil.execute("select customer_id from customer");
+        ResultSet rst = Util.execute("select customer_id from customer");
 
         ArrayList<String> customerIds = new ArrayList<>();
 
@@ -139,7 +136,7 @@ public class CustomerModel {
      * This method retrieves customer data for a specific customer ID from the 'customer' table and creates a CustomerDTO object with the retrieved data.
      **/
     public CustomerDTO findById(String selectedCusId) throws SQLException {
-        ResultSet rst = CrudUtil.execute("select * from customer where customer_id=?", selectedCusId);
+        ResultSet rst = Util.execute("select * from customer where customer_id=?", selectedCusId);
 
         if (rst.next()) {
             return new CustomerDTO(

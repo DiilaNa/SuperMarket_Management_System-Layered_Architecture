@@ -1,7 +1,7 @@
 package lk.ijse.gdse.supermarket.model;
 
 import lk.ijse.gdse.supermarket.dto.OrderDetailsDTO;
-import lk.ijse.gdse.supermarket.util.CrudUtil;
+import lk.ijse.gdse.supermarket.dao.Util;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -59,7 +59,7 @@ public class OrderDetailsModel {
      **/
     private boolean saveOrderDetail(OrderDetailsDTO orderDetailsDTO) throws SQLException {
         // Executes an insert query to save the order detail into the database
-        return CrudUtil.execute(
+        return Util.execute(
                 "insert into orderdetails values (?,?,?,?)",
                 orderDetailsDTO.getOrderId(),
                 orderDetailsDTO.getItemId(),

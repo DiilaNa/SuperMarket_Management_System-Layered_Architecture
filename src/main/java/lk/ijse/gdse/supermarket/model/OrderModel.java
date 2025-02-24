@@ -2,7 +2,7 @@ package lk.ijse.gdse.supermarket.model;
 
 import lk.ijse.gdse.supermarket.db.DBConnection;
 import lk.ijse.gdse.supermarket.dto.OrderDTO;
-import lk.ijse.gdse.supermarket.util.CrudUtil;
+import lk.ijse.gdse.supermarket.dao.Util;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -33,7 +33,7 @@ public class OrderModel {
      **/
     public String getNextOrderId() throws SQLException {
         // @rst: ResultSet from the query fetching the last order ID from the orders table
-        ResultSet rst = CrudUtil.execute("select order_id from orders order by order_id desc limit 1");
+        ResultSet rst = Util.execute("select order_id from orders order by order_id desc limit 1");
 
         if (rst.next()) {
             // @lastId: Retrieves the last order ID
@@ -68,7 +68,7 @@ public class OrderModel {
             connection.setAutoCommit(false); // 1
 
             // @isOrderSaved: Saves the order details into the orders table
-            boolean isOrderSaved = CrudUtil.execute(
+            boolean isOrderSaved = Util.execute(
                     "insert into orders values (?,?,?)",
                     orderDTO.getOrderId(),
                     orderDTO.getCustomerId(),

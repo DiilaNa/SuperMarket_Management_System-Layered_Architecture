@@ -1,9 +1,8 @@
 package lk.ijse.gdse.supermarket.model;
 
-import lk.ijse.gdse.supermarket.dto.CustomerDTO;
 import lk.ijse.gdse.supermarket.dto.ItemDTO;
 import lk.ijse.gdse.supermarket.dto.OrderDetailsDTO;
-import lk.ijse.gdse.supermarket.util.CrudUtil;
+import lk.ijse.gdse.supermarket.dao.Util;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,7 +29,7 @@ public class ItemModel {
      **/
     public ArrayList<String> getAllItemIds() throws SQLException {
         // Execute SQL query to get all item IDs
-        ResultSet rst = CrudUtil.execute("select item_id from item");
+        ResultSet rst = Util.execute("select item_id from item");
 
         // Create an ArrayList to store the item IDs
         ArrayList<String> itemIds = new ArrayList<>();
@@ -53,7 +52,7 @@ public class ItemModel {
      **/
     public ItemDTO findById(String selectedItemId) throws SQLException {
         // Execute SQL query to find the item by ID
-        ResultSet rst = CrudUtil.execute("select * from item where item_id=?", selectedItemId);
+        ResultSet rst = Util.execute("select * from item where item_id=?", selectedItemId);
 
         // If the item is found, create an ItemDTO object with the retrieved data
         if (rst.next()) {
@@ -78,7 +77,7 @@ public class ItemModel {
      **/
     public boolean reduceQty(OrderDetailsDTO orderDetailsDTO) throws SQLException {
         // Execute SQL query to update the item quantity in the database
-        return CrudUtil.execute(
+        return Util.execute(
                 "update item set quantity = quantity - ? where item_id = ?",
                 orderDetailsDTO.getQuantity(),   // Quantity to reduce
                 orderDetailsDTO.getItemId()      // Item ID

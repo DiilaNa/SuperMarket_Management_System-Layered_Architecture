@@ -1,7 +1,6 @@
-package lk.ijse.gdse.supermarket.util;
+package lk.ijse.gdse.supermarket.dao;
 
 import lk.ijse.gdse.supermarket.db.DBConnection;
-import lk.ijse.gdse.supermarket.dto.CustomerDTO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,7 +19,7 @@ import java.sql.SQLException;
  **/
 
 
-public class CrudUtil {
+public class Util {
 
     // This class contains utility methods for executing CRUD operations (Create, Read, Update, Delete) with the database.
     public static <T>T execute(String sql,Object... obj) throws SQLException {
