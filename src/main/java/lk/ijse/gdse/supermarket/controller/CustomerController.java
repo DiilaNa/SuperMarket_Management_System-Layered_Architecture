@@ -303,7 +303,7 @@ public class CustomerController implements Initializable {
 
             CustomerDTO customerDTO = new CustomerDTO(id, name, nic, email, phone);
 
-            boolean isUpdate = customerModel.updateCustomer(customerDTO);
+            boolean isUpdate = customerBO.updateCustomer(customerDTO);
 
             if (isUpdate) {
                 new Alert(Alert.AlertType.INFORMATION, "Customer updated...!").show();

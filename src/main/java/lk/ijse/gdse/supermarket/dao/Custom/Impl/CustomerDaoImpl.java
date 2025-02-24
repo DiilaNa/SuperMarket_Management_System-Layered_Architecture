@@ -40,13 +40,20 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
     @Override
-    public void update(Customer entity) {
-
+    public boolean update(Customer entity) throws SQLException {
+        return Util.execute(
+                "update customer set name=?, nic=?, email=?, phone=? where customer_id=?",
+                entity.getName(),
+                entity.getNic(),
+                entity.getEmail(),
+                entity.getPhone(),
+                entity.getId()
+        );
     }
 
     @Override
-    public void delete(Customer entity) {
-
+    public boolean delete(Customer entity) {
+        return false;
     }
 
     @Override

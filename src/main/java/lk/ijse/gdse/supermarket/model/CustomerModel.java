@@ -19,27 +19,6 @@ import java.util.ArrayList;
  **/
 
 public class CustomerModel {
-
-
-    /**
-     * @param customerDTO: The CustomerDTO object containing customer data.
-     * @return boolean: Returns true if the customer is successfully saved, otherwise false.
-     * @throws SQLException: If any SQL-related error occurs during the query execution.
-     * @saveCustomer: Saves a new customer to the database.
-     * This method executes an SQL INSERT query to save customer details into the 'customer' table.
-     **/
-    public boolean saveCustomer(CustomerDTO customerDTO) throws SQLException {
-        return Util.execute(
-                "insert into customer values (?,?,?,?,?)",
-                customerDTO.getId(),
-                customerDTO.getName(),
-                customerDTO.getNic(),
-                customerDTO.getEmail(),
-                customerDTO.getPhone()
-        );
-    }
-
-
     /**
      * @param customerDTO: The CustomerDTO object containing updated customer data.
      * @return boolean: Returns true if the customer details are successfully updated, otherwise false.
