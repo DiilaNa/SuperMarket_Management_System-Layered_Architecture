@@ -53,4 +53,15 @@ public class ItemDaoImpl implements ItemDAO {
         }
         return null;
     }
+
+    @Override
+    public ArrayList<String> getAllItemIds() throws SQLException {
+        ResultSet rst = Util.execute("select item_id from item");
+        ArrayList<String> itemIds = new ArrayList<>();
+
+        while (rst.next()) {
+            itemIds.add(rst.getString(1));
+        }
+        return itemIds;
+    }
 }

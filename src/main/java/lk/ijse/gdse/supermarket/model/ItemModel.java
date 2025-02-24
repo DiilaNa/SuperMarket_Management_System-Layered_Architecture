@@ -12,28 +12,6 @@ import java.util.ArrayList;
 
 public class ItemModel {
 
-    /**
-     * @return ArrayList<String>: A list of item IDs retrieved from the database.
-     * @throws SQLException: If any SQL-related error occurs during the query execution.
-     * @getAllItemIds: Retrieves all item IDs from the 'item' table.
-     * This method executes an SQL query to get all the item IDs, stores them in an ArrayList, and returns the list.
-     **/
-    public ArrayList<String> getAllItemIds() throws SQLException {
-        // Execute SQL query to get all item IDs
-        ResultSet rst = Util.execute("select item_id from item");
-
-        // Create an ArrayList to store the item IDs
-        ArrayList<String> itemIds = new ArrayList<>();
-
-        // Iterate through the result set and add each item ID to the list
-        while (rst.next()) {
-            itemIds.add(rst.getString(1));
-        }
-
-        // Return the list of item IDs
-        return itemIds;
-    }
-
 
     /**
      * @param orderDetailsDTO: The OrderDetailsDTO object containing the order details (item ID and quantity to reduce).

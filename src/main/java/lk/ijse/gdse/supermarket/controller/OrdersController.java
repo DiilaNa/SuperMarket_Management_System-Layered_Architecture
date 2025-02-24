@@ -143,7 +143,7 @@ public class OrdersController implements Initializable {
      * Load all item IDs into the item ComboBox.
      */
     private void loadItemId() throws SQLException {
-        ArrayList<String> itemIds = itemModel.getAllItemIds();
+        ArrayList<String> itemIds = itemBO.getAllItemIds();
         ObservableList<String> observableList = FXCollections.observableArrayList();
         observableList.addAll(itemIds);
         cmbItemId.setItems(observableList);
