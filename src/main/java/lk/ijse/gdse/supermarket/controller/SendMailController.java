@@ -1,15 +1,5 @@
 package lk.ijse.gdse.supermarket.controller;
 
-/**
- * --------------------------------------------
- * Author: R.I.B. Shamodha Sahan Rathnamalala
- * GitHub: https://github.com/shamodhas
- * Website: https://shamodha.live
- * --------------------------------------------
- * Created: 10/16/2024 2:28 PM
- * Project: Supermarket-72
- * --------------------------------------------
- **/
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

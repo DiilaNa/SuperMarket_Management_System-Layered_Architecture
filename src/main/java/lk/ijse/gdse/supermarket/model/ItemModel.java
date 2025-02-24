@@ -8,16 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-/**
- * --------------------------------------------
- * Author: R.I.B. Shamodha Sahan Rathnamalala
- * GitHub: https://github.com/shamodhas
- * Website: https://shamodha.live
- * --------------------------------------------
- * Created: 10/9/2024 1:38 PM
- * Project: Supermarket
- * --------------------------------------------
- **/
+
 
 public class ItemModel {
 
@@ -43,30 +34,6 @@ public class ItemModel {
         return itemIds;
     }
 
-    /**
-     * @param selectedItemId: The ID of the item to find.
-     * @return ItemDTO: Returns an ItemDTO object containing the item's details if found, otherwise returns null.
-     * @throws SQLException: If any SQL-related error occurs during the query execution.
-     * @findById: Finds an item by its ID.
-     * This method retrieves item data for a specific item ID from the 'item' table and creates an ItemDTO object with the retrieved data.
-     **/
-    public ItemDTO findById(String selectedItemId) throws SQLException {
-        // Execute SQL query to find the item by ID
-        ResultSet rst = Util.execute("select * from item where item_id=?", selectedItemId);
-
-        // If the item is found, create an ItemDTO object with the retrieved data
-        if (rst.next()) {
-            return new ItemDTO(
-                    rst.getString(1),  // Item ID
-                    rst.getString(2),  // Item Name
-                    rst.getInt(3),     // Item Quantity
-                    rst.getDouble(4)   // Item Price
-            );
-        }
-
-        // Return null if the item is not found
-        return null;
-    }
 
     /**
      * @param orderDetailsDTO: The OrderDetailsDTO object containing the order details (item ID and quantity to reduce).

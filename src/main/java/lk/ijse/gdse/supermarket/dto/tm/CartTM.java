@@ -6,16 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**
- * --------------------------------------------
- * Author: R.I.B. Shamodha Sahan Rathnamalala
- * GitHub: https://github.com/shamodhas
- * Website: https://shamodha.live
- * --------------------------------------------
- * Created: 10/9/2024 2:55 PM
- * Project: Supermarket
- * --------------------------------------------
- **/
+
 
 @Getter
 @Setter

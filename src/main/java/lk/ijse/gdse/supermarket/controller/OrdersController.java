@@ -1,15 +1,5 @@
 package lk.ijse.gdse.supermarket.controller;
 
-/**
- * --------------------------------------------
- * Author: R.I.B. Shamodha Sahan Rathnamalala
- * GitHub: https://github.com/shamodhas
- * Website: https://shamodha.live
- * --------------------------------------------
- * Created: 10/1/2024 2:12 PM
- * Project: Supermarket
- * --------------------------------------------
- **/
 
 
 import javafx.collections.FXCollections;
@@ -21,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import lk.ijse.gdse.supermarket.bo.BOFactory;
 import lk.ijse.gdse.supermarket.bo.Custom.CustomerBO;
+import lk.ijse.gdse.supermarket.bo.Custom.ItemBO;
 import lk.ijse.gdse.supermarket.dto.CustomerDTO;
 import lk.ijse.gdse.supermarket.dto.ItemDTO;
 import lk.ijse.gdse.supermarket.dto.OrderDTO;
@@ -76,6 +67,7 @@ public class OrdersController implements Initializable {
     private final OrderModel orderModel = new OrderModel();
     private final ItemModel itemModel = new ItemModel();
     CustomerBO customerBO = (CustomerBO) BOFactory.getInstance().getBO(BOFactory.BOType.CUSTOMER);
+    ItemBO itemBO = (ItemBO) BOFactory.getInstance().getBO(BOFactory.BOType.ITEM);
 
     // Observable list to manage cart items in TableView
     private final ObservableList<CartTM> cartTMS = FXCollections.observableArrayList();
@@ -344,9 +336,9 @@ public class OrdersController implements Initializable {
      * It retrieves and displays the item's details based on the selected ID.
      */
     @FXML
-    void cmbItemOnAction(ActionEvent event) throws SQLException {
+    void cmbItemOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
         String selectedItemId = cmbItemId.getSelectionModel().getSelectedItem();
-        ItemDTO itemDTO = itemModel.findById(selectedItemId);
+        ItemDTO itemDTO = itemBO.searchItem(selectedItemId);
 
         // If item found (itemDTO not null)
         if (itemDTO != null) {

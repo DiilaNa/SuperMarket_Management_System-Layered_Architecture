@@ -1,4 +1,5 @@
-package lk.ijse.gdse.supermarket.dto;
+package lk.ijse.gdse.supermarket.entity;
+
 
 import lombok.*;
 
@@ -7,9 +8,10 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class OrderDetailsDTO {
-    private String orderId;
+public class Item {
     private String itemId;
+    private String itemName;
     private int quantity;
     private double price;
 }
+
