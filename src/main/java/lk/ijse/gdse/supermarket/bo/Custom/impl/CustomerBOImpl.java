@@ -1,4 +1,6 @@
 package lk.ijse.gdse.supermarket.bo.Custom.impl;
 
-public class CustomerBOImpl {
+import lk.ijse.gdse.supermarket.bo.Custom.CustomerBO;
+
+public class CustomerBOImpl implements CustomerBO {
 }

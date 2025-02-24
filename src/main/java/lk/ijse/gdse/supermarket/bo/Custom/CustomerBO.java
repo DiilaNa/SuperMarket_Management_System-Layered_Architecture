@@ -1,4 +1,6 @@
 package lk.ijse.gdse.supermarket.bo.Custom;
 
-public interface CustomerBO {
+import lk.ijse.gdse.supermarket.bo.SuperBO;
+
+public interface CustomerBO extends SuperBO {
 }
