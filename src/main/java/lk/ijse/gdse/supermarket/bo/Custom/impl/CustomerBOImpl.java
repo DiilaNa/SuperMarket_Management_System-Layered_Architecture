@@ -60,4 +60,15 @@ public class CustomerBOImpl implements CustomerBO {
        return customerDao.delete(id);
     }
 
+    @Override
+    public ArrayList<String> getAllCustomerIds() throws SQLException {
+        return customerDao.getAllCustomerIds();
+    }
+
+    @Override
+    public CustomerDTO searchCustomer(String id) throws SQLException, ClassNotFoundException {
+        Customer customer = customerDao.search(id);
+        return new CustomerDTO(customer.getId(), customer.getName(), customer.getNic(), customer.getEmail(), customer.getPhone());
+    }
+
 }

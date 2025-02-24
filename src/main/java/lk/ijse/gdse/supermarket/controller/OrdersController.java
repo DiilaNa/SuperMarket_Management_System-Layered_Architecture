@@ -19,6 +19,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import lk.ijse.gdse.supermarket.bo.BOFactory;
+import lk.ijse.gdse.supermarket.bo.Custom.CustomerBO;
+import lk.ijse.gdse.supermarket.dao.Custom.CustomerDao;
+import lk.ijse.gdse.supermarket.dao.DAOFactory;
 import lk.ijse.gdse.supermarket.dto.CustomerDTO;
 import lk.ijse.gdse.supermarket.dto.ItemDTO;
 import lk.ijse.gdse.supermarket.dto.OrderDTO;
@@ -75,6 +79,7 @@ public class OrdersController implements Initializable {
     private final OrderModel orderModel = new OrderModel();
     private final CustomerModel customerModel = new CustomerModel();
     private final ItemModel itemModel = new ItemModel();
+    CustomerBO customerBO = (CustomerBO) BOFactory.getInstance().getBO(BOFactory.BOType.CUSTOMER);
 
     // Observable list to manage cart items in TableView
     private final ObservableList<CartTM> cartTMS = FXCollections.observableArrayList();
@@ -160,7 +165,7 @@ public class OrdersController implements Initializable {
      * Load all customer IDs into the customer ComboBox.
      */
     private void loadCustomerIds() throws SQLException {
-        ArrayList<String> customerIds = customerModel.getAllCustomerIds();
+        ArrayList<String> customerIds = customerBO.getAllCustomerIds();
         ObservableList<String> observableList = FXCollections.observableArrayList();
         observableList.addAll(customerIds);
         cmbCustomerId.setItems(observableList);
@@ -326,9 +331,9 @@ public class OrdersController implements Initializable {
      * It retrieves and displays the customer's name based on the selected ID.
      */
     @FXML
-    void cmbCustomerOnAction(ActionEvent event) throws SQLException {
+    void cmbCustomerOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
         String selectedCustomerId = cmbCustomerId.getSelectionModel().getSelectedItem();
-        CustomerDTO customerDTO = customerModel.findById(selectedCustomerId);
+        CustomerDTO customerDTO = customerBO.searchCustomer(selectedCustomerId);
 
         // If customer found (customerDTO not null)
         if (customerDTO != null) {

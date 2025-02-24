@@ -2,6 +2,7 @@ package lk.ijse.gdse.supermarket.dao.Custom.Impl;
 
 import lk.ijse.gdse.supermarket.dao.Custom.CustomerDao;
 import lk.ijse.gdse.supermarket.dao.Util;
+import lk.ijse.gdse.supermarket.dto.CustomerDTO;
 import lk.ijse.gdse.supermarket.entity.Customer;
 
 import java.sql.ResultSet;
@@ -76,7 +77,32 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
     @Override
-    public Customer search(String id) {
+    public Customer search(String id) throws SQLException {
+        ResultSet rst = Util.execute("select * from customer where customer_id=?", id);
+
+        if (rst.next()) {
+            return new Customer(
+                    rst.getString(1),  // Customer ID
+                    rst.getString(2),  // Name
+                    rst.getString(3),  // NIC
+                    rst.getString(4),  // Email
+                    rst.getString(5)   // Phone
+            );
+        }
         return null;
+
+    }
+
+    @Override
+    public ArrayList<String> getAllCustomerIds() throws SQLException {
+        ResultSet rst = Util.execute("select customer_id from customer");
+
+        ArrayList<String> customerIds = new ArrayList<>();
+
+        while (rst.next()) {
+            customerIds.add(rst.getString(1));
+        }
+
+        return customerIds;
     }
 }

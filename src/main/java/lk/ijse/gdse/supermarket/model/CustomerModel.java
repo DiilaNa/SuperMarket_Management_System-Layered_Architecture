@@ -20,34 +20,6 @@ import java.util.ArrayList;
 
 public class CustomerModel {
 
-    /**
-     * @param customerId: The ID of the customer to be deleted.
-     * @return boolean: Returns true if the customer is successfully deleted, otherwise false.
-     * @throws SQLException: If any SQL-related error occurs during the query execution.
-     * @deleteCustomer: Deletes a customer from the database.
-     * This method executes an SQL DELETE query to remove a customer by their ID.
-     **/
-    public boolean deleteCustomer(String customerId) throws SQLException {
-        return Util.execute("delete from customer where customer_id=?", customerId);
-    }
-
-    /**
-     * @return ArrayList<String>: A list of customer IDs retrieved from the database.
-     * @throws SQLException: If any SQL-related error occurs during the query execution.
-     * @getAllCustomerIds: Retrieves all customer IDs from the database.
-     * This method executes an SQL SELECT query to fetch all customer IDs and returns them as a list.
-     **/
-    public ArrayList<String> getAllCustomerIds() throws SQLException {
-        ResultSet rst = Util.execute("select customer_id from customer");
-
-        ArrayList<String> customerIds = new ArrayList<>();
-
-        while (rst.next()) {
-            customerIds.add(rst.getString(1));
-        }
-
-        return customerIds;
-    }
 
     /**
      * @param selectedCusId: The ID of the customer to find.
