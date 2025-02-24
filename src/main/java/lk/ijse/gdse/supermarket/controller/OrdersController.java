@@ -28,7 +28,6 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class OrdersController implements Initializable {
-
     // FXML controls to interact with the GUI elements
     @FXML
     private ComboBox<String> cmbCustomerId;

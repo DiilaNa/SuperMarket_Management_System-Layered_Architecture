@@ -2,6 +2,7 @@ package lk.ijse.gdse.supermarket.dao.Custom.Impl;
 
 import lk.ijse.gdse.supermarket.dao.Custom.ItemDAO;
 import lk.ijse.gdse.supermarket.dao.Util;
+import lk.ijse.gdse.supermarket.dto.OrderDetailsDTO;
 import lk.ijse.gdse.supermarket.entity.Item;
 
 import java.sql.ResultSet;
@@ -63,5 +64,14 @@ public class ItemDaoImpl implements ItemDAO {
             itemIds.add(rst.getString(1));
         }
         return itemIds;
+    }
+
+    @Override
+    public boolean reduceQty(OrderDetailsDTO orderDetailsDTO) throws SQLException {
+        return Util.execute(
+                "update item set quantity = quantity - ? where item_id = ?",
+                orderDetailsDTO.getQuantity(),   // Quantity to reduce
+                orderDetailsDTO.getItemId()      // Item ID
+        );
     }
 }
