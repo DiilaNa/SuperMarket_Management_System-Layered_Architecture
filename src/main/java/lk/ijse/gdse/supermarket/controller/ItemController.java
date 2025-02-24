@@ -100,8 +100,8 @@ public class ItemController implements Initializable {
     }
 
     private void loadNextItemId() throws SQLException {
-//        String nextItemId = itemModel.getNextItemId();
-//        lblItemId.setText(nextItemId);
+        String nextItemId = itemBO.getNextItemId();
+        lblItemId.setText(nextItemId);
 
     }
 

@@ -57,7 +57,16 @@ public class ItemDaoImpl implements ItemDAO {
 
     @Override
     public String generateNewId() throws SQLException {
-        return "";
+        ResultSet rst = Util.execute("select item_id from item order by item_id desc limit 1");
+
+        if (rst.next()) {
+            String lastId = rst.getString(1); // Last customer ID
+            String substring = lastId.substring(1); // Extract the numeric part
+            int i = Integer.parseInt(substring); // Convert the numeric part to integer
+            int newIdIndex = i + 1; // Increment the number by 1
+            return String.format("I%03d", newIdIndex); // Return the new customer ID in format Cnnn
+        }
+        return "I001";
     }
 
     @Override

@@ -14,4 +14,5 @@ public interface CustomerBO extends SuperBO {
     boolean deleteCustomer(String id) throws SQLException;
     ArrayList<String> getAllCustomerIds() throws SQLException;
     CustomerDTO searchCustomer(String id) throws SQLException, ClassNotFoundException;
+
 }

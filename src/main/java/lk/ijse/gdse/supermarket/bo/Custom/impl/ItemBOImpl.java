@@ -68,4 +68,9 @@ public class ItemBOImpl implements ItemBO {
                 orderDetailsDTO.getPrice()
         ));
     }
+
+    @Override
+    public String getNextItemId() throws SQLException {
+        return itemDAO.generateNewId();
+    }
 }
