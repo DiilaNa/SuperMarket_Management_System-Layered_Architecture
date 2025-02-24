@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface CrudDAO<T> extends SuperDao {
-    ArrayList<T> getALL ();
+    ArrayList<T> getALL () throws SQLException;
     boolean save (T dto);
     void update (T dto);
     void delete (T dto);

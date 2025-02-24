@@ -10,8 +10,21 @@ import java.util.ArrayList;
 
 public class CustomerDaoImpl implements CustomerDao {
     @Override
-    public ArrayList<Customer> getALL() {
-        return null;
+    public ArrayList<Customer> getALL() throws SQLException {
+        ResultSet rst = Util.execute("select * from customer");
+        ArrayList<Customer> customers = new ArrayList<>();
+        while (rst.next()) {
+            customers.add(new Customer(
+               rst.getString(1),
+               rst.getString(2),
+               rst.getString(3),
+               rst.getString(4),
+               rst.getString(5)
+
+            ));
+        }
+        return customers;
+
     }
 
     @Override
