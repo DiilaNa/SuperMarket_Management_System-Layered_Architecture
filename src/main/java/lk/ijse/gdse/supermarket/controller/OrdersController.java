@@ -107,24 +107,10 @@ public class OrdersController implements Initializable {
      * and loading fresh data such as customer and item IDs.
      */
     private void refreshPage() throws SQLException {
-        // Get the next order ID and set it to the label
         lblOrderId.setText(orderBO.generateNewOrderId());
-
-        // Set the current date to the order date label
-//        orderDate.setText(String.valueOf(LocalDate.now()));
         orderDate.setText(LocalDate.now().toString());
-
-        // Load customer and item IDs into ComboBoxes
         loadCustomerIds();
         loadItemId();
-
-//        ComboBox on action set
-//        cmbCustomerId.setOnAction(e->{
-//            String selectedCusId = cmbCustomerId.getSelectionModel().getSelectedItem();
-//            System.out.println(selectedCusId);
-//        });
-
-        // Clear selected customer, item, and their associated labels
         cmbCustomerId.getSelectionModel().clearSelection();
         cmbItemId.getSelectionModel().clearSelection();
         lblItemName.setText("");
@@ -132,11 +118,7 @@ public class OrdersController implements Initializable {
         lblItemPrice.setText("");
         txtAddToCartQty.setText("");
         lblCustomerName.setText("");
-
-        // Clear the cart observable list
         cartTMS.clear();
-
-        // Refresh the table to reflect changes
         tblCart.refresh();
     }
 
@@ -296,7 +278,7 @@ public class OrdersController implements Initializable {
 
         boolean isSaved = orderBO.saveOrder(orderDetailsDTOS,orderDTOS);
         if (isSaved) {
-
+            refreshPage();
             new Alert(Alert.AlertType.INFORMATION, "Order saved..!").show();
 
             // Reset the page after placing the order
@@ -310,18 +292,9 @@ public class OrdersController implements Initializable {
      */
     @FXML
     void btnResetOnAction(ActionEvent event) throws SQLException {
-        lblOrderId.setText(orderBO.generateNewOrderId());
-        loadCustomerIds();
-        loadItemId();
-        orderDate.setText(LocalDate.now().toString());
+       refreshPage();
 
-        cmbCustomerId.getSelectionModel().clearSelection();
-        cmbItemId.getSelectionModel().clearSelection();
-        lblItemName.setText("");
-        lblItemQty.setText("");
-        lblItemPrice.setText("");
-        txtAddToCartQty.setText("");
-        lblCustomerName.setText("");
+
 
     }
 
@@ -349,9 +322,7 @@ public class OrdersController implements Initializable {
     @FXML
     void cmbItemOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
         String selectedItemId = cmbItemId.getSelectionModel().getSelectedItem();
-        System.out.println("Selected item id is " + selectedItemId);
         ItemDTO itemDTO = itemBO.searchItem(selectedItemId);
-        System.out.println("itemdto came from bo"+itemDTO);
         // If item found (itemDTO not null)
         if (itemDTO != null) {
 

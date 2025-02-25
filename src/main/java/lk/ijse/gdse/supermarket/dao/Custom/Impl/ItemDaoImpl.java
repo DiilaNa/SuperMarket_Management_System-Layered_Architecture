@@ -79,10 +79,8 @@ public class ItemDaoImpl implements ItemDAO {
                     rst.getInt(3),
                     rst.getDouble(4)
             );
-        }else {
-            System.out.println("Null in itemDAO");
-            return null;
         }
+        return null;
 
     }
 

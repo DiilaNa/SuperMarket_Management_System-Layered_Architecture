@@ -88,10 +88,8 @@ public class CustomerDaoImpl implements CustomerDao {
                     rst.getString(4),  // Email
                     rst.getString(5)   // Phone
             );
-        }else {
-            System.out.println("null in dao");
-            return null;
         }
+        return null;
 
     }
 
