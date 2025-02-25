@@ -34,7 +34,7 @@ public class OrderModel {
      * @return boolean: Returns true if both the order and its details are saved successfully, otherwise false.
      * @throws SQLException: If any SQL-related issues occur during the saving process.
      **/
-    public boolean saveOrder(OrderDTO orderDTO) throws SQLException {
+   /* public boolean saveOrder(OrderDTO orderDTO) throws SQLException {
         // @connection: Retrieves the current connection instance for the database
         Connection connection = DBConnection.getInstance().getConnection();
         try {
@@ -69,6 +69,6 @@ public class OrderModel {
             // @finally: Resets auto-commit to true after the operation
             connection.setAutoCommit(true); // 4
         }
-    }
+    }*/
 }
 

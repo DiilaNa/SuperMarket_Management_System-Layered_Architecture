@@ -20,5 +20,4 @@ public class OrderDTO {
     private Date orderDate;
 
     // @orderDetailsDTOS: A list of OrderDetailsDTO objects, each representing an item in the order
-    private ArrayList<OrderDetailsDTO> orderDetailsDTOS;
 }

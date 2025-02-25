@@ -282,20 +282,21 @@ public class OrdersController implements Initializable {
                     cartTM.getCartQuantity(),
                     cartTM.getUnitPrice()
             );
-
-            // Add to order details array
             orderDetailsDTOS.add(orderDetailsDTO);
+            // Add to order details array
+
         }
 
         // Create an OrderDTO with relevant order data
         OrderDTO orderDTO = new OrderDTO(
                 orderId,
                 customerId,
-                dateOfOrder,
-                orderDetailsDTOS
+                dateOfOrder
         );
+        ArrayList<OrderDTO> orderDTOS = new ArrayList<>();
+        orderDTOS.add(orderDTO);
 
-        boolean isSaved = orderModel.saveOrder(orderDTO);
+        boolean isSaved = orderBO.saveOrder(orderDetailsDTOS,orderDTOS);
 
         if (isSaved) {
             new Alert(Alert.AlertType.INFORMATION, "Order saved..!").show();
