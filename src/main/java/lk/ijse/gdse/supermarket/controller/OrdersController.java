@@ -107,10 +107,18 @@ public class OrdersController implements Initializable {
      * and loading fresh data such as customer and item IDs.
      */
     private void refreshPage() throws SQLException {
+        // Get the next order ID and set it to the label
         lblOrderId.setText(orderBO.generateNewOrderId());
+
+        // Set the current date to the order date label
+//        orderDate.setText(String.valueOf(LocalDate.now()));
         orderDate.setText(LocalDate.now().toString());
+
+        // Load customer and item IDs into ComboBoxes
         loadCustomerIds();
         loadItemId();
+
+        // Clear selected customer, item, and their associated labels
         cmbCustomerId.getSelectionModel().clearSelection();
         cmbItemId.getSelectionModel().clearSelection();
         lblItemName.setText("");
@@ -118,7 +126,11 @@ public class OrdersController implements Initializable {
         lblItemPrice.setText("");
         txtAddToCartQty.setText("");
         lblCustomerName.setText("");
+
+        // Clear the cart observable list
         cartTMS.clear();
+
+        // Refresh the table to reflect changes
         tblCart.refresh();
     }
 
@@ -126,18 +138,20 @@ public class OrdersController implements Initializable {
      * Load all item IDs into the item ComboBox.
      */
     private void loadItemId() throws SQLException {
-        cmbItemId.getItems().clear();
         ArrayList<String> itemIds = itemBO.getAllItemIds();
-        cmbItemId.getItems().addAll(itemIds);
+        ObservableList<String> observableList = FXCollections.observableArrayList(itemIds);
+        observableList.addAll(itemIds);
+        cmbItemId.setItems(observableList);
     }
 
     /**
      * Load all customer IDs into the customer ComboBox.
      */
     private void loadCustomerIds() throws SQLException {
-        cmbCustomerId.getItems().clear();
         ArrayList<String> customerIds = customerBO.getAllCustomerIds();
-       cmbCustomerId.getItems().addAll(customerIds);
+        ObservableList<String> observableList = FXCollections.observableArrayList();
+        observableList.addAll(customerIds);
+       cmbCustomerId.setItems(observableList);
     }
 
     /**
@@ -278,10 +292,11 @@ public class OrdersController implements Initializable {
 
         boolean isSaved = orderBO.saveOrder(orderDetailsDTOS,orderDTOS);
         if (isSaved) {
-            refreshPage();
+
             new Alert(Alert.AlertType.INFORMATION, "Order saved..!").show();
 
             // Reset the page after placing the order
+            refreshPage();
         } else {
             new Alert(Alert.AlertType.ERROR, "Order fail..!").show();
         }

@@ -52,11 +52,12 @@ public class ItemBOImpl implements ItemBO {
     public ItemDTO searchItem(String id) throws SQLException, ClassNotFoundException {
 
         Item item= itemDAO.search(id);
-        return new ItemDTO(
+        return(item!=null)?
+                new ItemDTO(
                item.getItemId(),
                item.getItemName(),
                item.getQuantity(),
-               item.getPrice());
+               item.getPrice()):null;
     }
 
     @Override
