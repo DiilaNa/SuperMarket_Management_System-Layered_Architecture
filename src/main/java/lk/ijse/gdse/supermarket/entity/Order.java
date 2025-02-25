@@ -1,10 +1,10 @@
 package lk.ijse.gdse.supermarket.entity;
 
-import lk.ijse.gdse.supermarket.dto.OrderDetailsDTO;
+
 import lombok.*;
 
 import java.sql.Date;
-import java.util.ArrayList;
+
 
 // Lombok annotations to generate methods automatically and reduce boilerplate code
 @Getter                 // @Getter: Automatically generates getter methods for all fields

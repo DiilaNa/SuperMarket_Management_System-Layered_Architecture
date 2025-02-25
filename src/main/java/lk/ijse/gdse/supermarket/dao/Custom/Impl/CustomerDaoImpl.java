@@ -2,7 +2,6 @@ package lk.ijse.gdse.supermarket.dao.Custom.Impl;
 
 import lk.ijse.gdse.supermarket.dao.Custom.CustomerDao;
 import lk.ijse.gdse.supermarket.dao.Util;
-import lk.ijse.gdse.supermarket.dto.CustomerDTO;
 import lk.ijse.gdse.supermarket.entity.Customer;
 
 import java.sql.ResultSet;
