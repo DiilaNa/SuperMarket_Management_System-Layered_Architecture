@@ -20,6 +20,8 @@ import lk.ijse.gdse.supermarket.dto.OrderDetailsDTO;
 import lk.ijse.gdse.supermarket.dto.tm.CartTM;
 import lk.ijse.gdse.supermarket.model.ItemModel;
 import lk.ijse.gdse.supermarket.model.OrderModel;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.net.URL;
 import java.sql.Date;
@@ -29,6 +31,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class OrdersController implements Initializable {
+    private static final Log log = LogFactory.getLog(OrdersController.class);
     // FXML controls to interact with the GUI elements
     @FXML
     private ComboBox<String> cmbCustomerId;
@@ -297,8 +300,8 @@ public class OrdersController implements Initializable {
         orderDTOS.add(orderDTO);
 
         boolean isSaved = orderBO.saveOrder(orderDetailsDTOS,orderDTOS);
-
         if (isSaved) {
+            itemBO.reduceQty(orderDetailsDTOS);
             new Alert(Alert.AlertType.INFORMATION, "Order saved..!").show();
 
             // Reset the page after placing the order

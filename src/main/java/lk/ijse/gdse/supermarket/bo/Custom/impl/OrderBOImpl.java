@@ -1,6 +1,7 @@
 package lk.ijse.gdse.supermarket.bo.Custom.impl;
 
 import lk.ijse.gdse.supermarket.bo.Custom.OrderBO;
+import lk.ijse.gdse.supermarket.dao.Custom.ItemDAO;
 import lk.ijse.gdse.supermarket.dao.Custom.OrderDAO;
 import lk.ijse.gdse.supermarket.dao.Custom.OrderDetailDAO;
 import lk.ijse.gdse.supermarket.dao.DAOFactory;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 public class OrderBOImpl implements OrderBO {
     OrderDAO orderDAO = (OrderDAO) DAOFactory.getInstance().getDao(DAOFactory.DAOType.ORDER);
     OrderDetailDAO orderDetailDAO = (OrderDetailDAO) DAOFactory.getInstance().getDao(DAOFactory.DAOType.ORDER_DETAILS);
+    ItemDAO itemDAO = (ItemDAO) DAOFactory.getInstance().getDao(DAOFactory.DAOType.ITEM);
     @Override
     public String generateNewOrderId() throws SQLException {
         return  orderDAO.generateNewId();

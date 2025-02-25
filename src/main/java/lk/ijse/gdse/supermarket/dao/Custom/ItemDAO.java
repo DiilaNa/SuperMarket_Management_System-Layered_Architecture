@@ -9,5 +9,5 @@ import java.util.ArrayList;
 
 public interface ItemDAO extends CrudDAO<Item> {
     ArrayList<String> getAllItemIds() throws SQLException;
-    boolean reduceQty(OrderDetailsDTO orderDetailsDTO) throws SQLException;
+    boolean reduceQty(String itemId,int qty) throws SQLException;
 }

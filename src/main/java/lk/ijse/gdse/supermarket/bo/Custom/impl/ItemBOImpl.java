@@ -6,6 +6,7 @@ import lk.ijse.gdse.supermarket.dao.DAOFactory;
 import lk.ijse.gdse.supermarket.dto.ItemDTO;
 import lk.ijse.gdse.supermarket.dto.OrderDetailsDTO;
 import lk.ijse.gdse.supermarket.entity.Item;
+import lk.ijse.gdse.supermarket.entity.OrderDetails;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -60,13 +61,15 @@ public class ItemBOImpl implements ItemBO {
     }
 
     @Override
-    public boolean reduceQty(OrderDetailsDTO orderDetailsDTO) throws SQLException {
-        return itemDAO.reduceQty(new OrderDetailsDTO(
-                orderDetailsDTO.getOrderId(),
-                orderDetailsDTO.getItemId(),
-                orderDetailsDTO.getQuantity(),
-                orderDetailsDTO.getPrice()
-        ));
+    public boolean reduceQty(ArrayList<OrderDetailsDTO> orderDetailsDTO) throws SQLException {
+        for (OrderDetailsDTO orderDetail : orderDetailsDTO) {
+            boolean isUpdated = itemDAO.reduceQty(orderDetail.getItemId(), orderDetail.getQuantity());
+            if (!isUpdated) {
+                throw new SQLException("Failed to update quantity for Item ID: " + orderDetail.getItemId());
+
+            }
+        }
+        return true;
     }
 
     @Override

@@ -96,11 +96,10 @@ public class ItemDaoImpl implements ItemDAO {
     }
 
     @Override
-    public boolean reduceQty(OrderDetailsDTO orderDetailsDTO) throws SQLException {
+    public boolean reduceQty( String itemId, int qty) throws SQLException {
         return Util.execute(
                 "update item set quantity = quantity - ? where item_id = ?",
-                orderDetailsDTO.getQuantity(),   // Quantity to reduce
-                orderDetailsDTO.getItemId()      // Item ID
+               qty,itemId
         );
     }
 }
