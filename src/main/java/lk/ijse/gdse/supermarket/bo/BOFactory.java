@@ -2,6 +2,7 @@ package lk.ijse.gdse.supermarket.bo;
 
 import lk.ijse.gdse.supermarket.bo.Custom.impl.CustomerBOImpl;
 import lk.ijse.gdse.supermarket.bo.Custom.impl.ItemBOImpl;
+import lk.ijse.gdse.supermarket.bo.Custom.impl.OrderBOImpl;
 
 public class BOFactory {
     private static BOFactory boFactory;
@@ -13,7 +14,7 @@ public class BOFactory {
         return boFactory;
     }
     public enum BOType {
-        CUSTOMER,ITEM
+        CUSTOMER,ITEM,ORDER
     }
     public SuperBO getBO(BOType type) {
         switch (type) {
@@ -21,6 +22,8 @@ public class BOFactory {
                 return new CustomerBOImpl();
                 case ITEM:
                     return new ItemBOImpl();
+                    case ORDER:
+                        return new OrderBOImpl();
                 default:
                     return null;
         }

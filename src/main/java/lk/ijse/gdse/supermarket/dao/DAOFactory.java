@@ -2,6 +2,7 @@ package lk.ijse.gdse.supermarket.dao;
 
 import lk.ijse.gdse.supermarket.dao.Custom.Impl.CustomerDaoImpl;
 import lk.ijse.gdse.supermarket.dao.Custom.Impl.ItemDaoImpl;
+import lk.ijse.gdse.supermarket.dao.Custom.Impl.OrderDaoImpl;
 
 public class DAOFactory {
     private static DAOFactory daoFactory;
@@ -16,7 +17,7 @@ public class DAOFactory {
         return daoFactory;
     }
     public enum DAOType {
-        CUSTOMER,ITEM
+        CUSTOMER,ITEM,ORDER
     }
     public SuperDao getDao(DAOType type) {
         switch (type) {
@@ -24,6 +25,8 @@ public class DAOFactory {
                 return new CustomerDaoImpl();
                     case ITEM:
                         return new ItemDaoImpl();
+                        case ORDER:
+                            return new OrderDaoImpl();
                 default:
                     return null;
         }

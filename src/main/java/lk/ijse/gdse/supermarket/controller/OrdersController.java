@@ -12,6 +12,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import lk.ijse.gdse.supermarket.bo.BOFactory;
 import lk.ijse.gdse.supermarket.bo.Custom.CustomerBO;
 import lk.ijse.gdse.supermarket.bo.Custom.ItemBO;
+import lk.ijse.gdse.supermarket.bo.Custom.OrderBO;
 import lk.ijse.gdse.supermarket.dto.CustomerDTO;
 import lk.ijse.gdse.supermarket.dto.ItemDTO;
 import lk.ijse.gdse.supermarket.dto.OrderDTO;
@@ -67,6 +68,7 @@ public class OrdersController implements Initializable {
     private final ItemModel itemModel = new ItemModel();
     CustomerBO customerBO = (CustomerBO) BOFactory.getInstance().getBO(BOFactory.BOType.CUSTOMER);
     ItemBO itemBO = (ItemBO) BOFactory.getInstance().getBO(BOFactory.BOType.ITEM);
+    OrderBO orderBO = (OrderBO) BOFactory.getInstance().getBO(BOFactory.BOType.ORDER);
 
     // Observable list to manage cart items in TableView
     private final ObservableList<CartTM> cartTMS = FXCollections.observableArrayList();
@@ -106,7 +108,7 @@ public class OrdersController implements Initializable {
      */
     private void refreshPage() throws SQLException {
         // Get the next order ID and set it to the label
-        lblOrderId.setText(orderModel.getNextOrderId());
+        lblOrderId.setText(orderBO.generateNewOrderId());
 
         // Set the current date to the order date label
 //        orderDate.setText(String.valueOf(LocalDate.now()));
