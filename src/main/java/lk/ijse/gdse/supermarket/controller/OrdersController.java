@@ -18,8 +18,7 @@ import lk.ijse.gdse.supermarket.dto.ItemDTO;
 import lk.ijse.gdse.supermarket.dto.OrderDTO;
 import lk.ijse.gdse.supermarket.dto.OrderDetailsDTO;
 import lk.ijse.gdse.supermarket.dto.tm.CartTM;
-import lk.ijse.gdse.supermarket.model.ItemModel;
-import lk.ijse.gdse.supermarket.model.OrderModel;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -67,8 +66,6 @@ public class OrdersController implements Initializable {
     private TextField txtAddToCartQty;
 
     // Models to manage data interactions with database or logic layers
-    private final OrderModel orderModel = new OrderModel();
-    private final ItemModel itemModel = new ItemModel();
     CustomerBO customerBO = (CustomerBO) BOFactory.getInstance().getBO(BOFactory.BOType.CUSTOMER);
     ItemBO itemBO = (ItemBO) BOFactory.getInstance().getBO(BOFactory.BOType.ITEM);
     OrderBO orderBO = (OrderBO) BOFactory.getInstance().getBO(BOFactory.BOType.ORDER);
@@ -147,20 +144,18 @@ public class OrdersController implements Initializable {
      * Load all item IDs into the item ComboBox.
      */
     private void loadItemId() throws SQLException {
+        cmbItemId.getItems().clear();
         ArrayList<String> itemIds = itemBO.getAllItemIds();
-        ObservableList<String> observableList = FXCollections.observableArrayList();
-        observableList.addAll(itemIds);
-        cmbItemId.setItems(observableList);
+        cmbItemId.getItems().addAll(itemIds);
     }
 
     /**
      * Load all customer IDs into the customer ComboBox.
      */
     private void loadCustomerIds() throws SQLException {
+        cmbCustomerId.getItems().clear();
         ArrayList<String> customerIds = customerBO.getAllCustomerIds();
-        ObservableList<String> observableList = FXCollections.observableArrayList();
-        observableList.addAll(customerIds);
-        cmbCustomerId.setItems(observableList);
+       cmbCustomerId.getItems().addAll(customerIds);
     }
 
     /**
@@ -305,7 +300,6 @@ public class OrdersController implements Initializable {
             new Alert(Alert.AlertType.INFORMATION, "Order saved..!").show();
 
             // Reset the page after placing the order
-            refreshPage();
         } else {
             new Alert(Alert.AlertType.ERROR, "Order fail..!").show();
         }
@@ -316,7 +310,19 @@ public class OrdersController implements Initializable {
      */
     @FXML
     void btnResetOnAction(ActionEvent event) throws SQLException {
-        refreshPage();
+        lblOrderId.setText(orderBO.generateNewOrderId());
+        loadCustomerIds();
+        loadItemId();
+        orderDate.setText(LocalDate.now().toString());
+
+        cmbCustomerId.getSelectionModel().clearSelection();
+        cmbItemId.getSelectionModel().clearSelection();
+        lblItemName.setText("");
+        lblItemQty.setText("");
+        lblItemPrice.setText("");
+        txtAddToCartQty.setText("");
+        lblCustomerName.setText("");
+
     }
 
     /**
@@ -343,8 +349,9 @@ public class OrdersController implements Initializable {
     @FXML
     void cmbItemOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
         String selectedItemId = cmbItemId.getSelectionModel().getSelectedItem();
+        System.out.println("Selected item id is " + selectedItemId);
         ItemDTO itemDTO = itemBO.searchItem(selectedItemId);
-
+        System.out.println("itemdto came from bo"+itemDTO);
         // If item found (itemDTO not null)
         if (itemDTO != null) {
 

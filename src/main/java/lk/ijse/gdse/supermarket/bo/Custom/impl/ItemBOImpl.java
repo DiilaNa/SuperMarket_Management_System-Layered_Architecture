@@ -51,8 +51,14 @@ public class ItemBOImpl implements ItemBO {
 
     @Override
     public ItemDTO searchItem(String id) throws SQLException, ClassNotFoundException {
+        System.out.println("selected id in itemBO IMPL is :"+id);
         Item item= itemDAO.search(id);
-       return new ItemDTO(item.getItemId(),item.getItemName(),item.getQuantity(),item.getPrice());
+        System.out.println("sid came from dao:"+item.getItemId()+" mek ywpu nma:"+id);
+        return new ItemDTO(
+               item.getItemId(),
+               item.getItemName(),
+               item.getQuantity(),
+               item.getPrice());
     }
 
     @Override

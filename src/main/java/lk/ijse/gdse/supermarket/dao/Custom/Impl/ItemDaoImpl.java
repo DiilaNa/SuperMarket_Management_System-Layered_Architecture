@@ -71,8 +71,9 @@ public class ItemDaoImpl implements ItemDAO {
 
     @Override
     public Item search(String id) throws SQLException {
+        System.out.println("selected id in dao :"+id);
         ResultSet rst = Util.execute("select * from item where item_id=?", id);
-
+        System.out.println(rst+"  :result set");
         if (rst.next()) {
             return new Item(
                     rst.getString(1),
@@ -80,8 +81,11 @@ public class ItemDaoImpl implements ItemDAO {
                     rst.getInt(3),
                     rst.getDouble(4)
             );
+        }else {
+            System.out.println("Null in itemDAO");
+            return null;
         }
-        return null;
+
     }
 
     @Override
