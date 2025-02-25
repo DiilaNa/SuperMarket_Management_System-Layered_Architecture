@@ -71,9 +71,7 @@ public class ItemDaoImpl implements ItemDAO {
 
     @Override
     public Item search(String id) throws SQLException {
-        System.out.println("selected id in dao :"+id);
         ResultSet rst = Util.execute("select * from item where item_id=?", id);
-        System.out.println(rst+"  :result set");
         if (rst.next()) {
             return new Item(
                     rst.getString(1),
@@ -101,8 +99,7 @@ public class ItemDaoImpl implements ItemDAO {
 
     @Override
     public boolean reduceQty( String itemId, int qty) throws SQLException {
-        return Util.execute(
-                "update item set quantity = quantity - ? where item_id = ?",
+        return Util.execute("update item set quantity = quantity - ? where item_id = ?",
                qty,itemId
         );
     }

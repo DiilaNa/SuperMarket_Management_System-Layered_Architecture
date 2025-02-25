@@ -296,7 +296,7 @@ public class OrdersController implements Initializable {
 
         boolean isSaved = orderBO.saveOrder(orderDetailsDTOS,orderDTOS);
         if (isSaved) {
-            itemBO.reduceQty(orderDetailsDTOS);
+
             new Alert(Alert.AlertType.INFORMATION, "Order saved..!").show();
 
             // Reset the page after placing the order

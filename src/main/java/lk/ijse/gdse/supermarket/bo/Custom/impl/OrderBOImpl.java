@@ -56,6 +56,13 @@ public class OrderBOImpl implements OrderBO {
                     return false;
                 }
             }
+            for (OrderDetailsDTO orderDetail : orderDetailsDTOS) {
+                boolean isUpdated = itemDAO.reduceQty(orderDetail.getItemId(), orderDetail.getQuantity());
+                if (!isUpdated) {
+                    connection.rollback(); // Rollback on failure
+                    throw new SQLException("Failed to update quantity for Item ID: " + orderDetail.getItemId());
+                }
+            }
             connection.commit();
             return true;
 

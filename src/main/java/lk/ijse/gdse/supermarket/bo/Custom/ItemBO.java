@@ -15,6 +15,5 @@ public interface ItemBO extends SuperBO {
     ArrayList<ItemDTO> getAllItemList() throws SQLException;
     ItemDTO searchItem(String id) throws SQLException, ClassNotFoundException;
     ArrayList<String> getAllItemIds() throws SQLException;
-    boolean reduceQty(ArrayList<OrderDetailsDTO> orderDetailsDTO) throws SQLException;
     String getNextItemId() throws SQLException;
 }

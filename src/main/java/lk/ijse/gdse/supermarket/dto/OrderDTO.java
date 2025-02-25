@@ -18,6 +18,4 @@ public class OrderDTO {
     private String orderId;
     private String customerId;
     private Date orderDate;
-
-    // @orderDetailsDTOS: A list of OrderDetailsDTO objects, each representing an item in the order
 }
