@@ -139,7 +139,7 @@ public class OrdersController implements Initializable {
      */
     private void loadItemId() throws SQLException {
         ArrayList<String> itemIds = itemBO.getAllItemIds();
-        ObservableList<String> observableList = FXCollections.observableArrayList(itemIds);
+        ObservableList<String> observableList = FXCollections.observableArrayList();
         observableList.addAll(itemIds);
         cmbItemId.setItems(observableList);
     }
